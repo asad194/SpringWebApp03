@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head></head>	
+<body>
+	<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p>
+	<h1>日記録リスト</h1>
+	<table border="1">
+    <thead>
+        <tr>
+            <th>日付</th>
+            <th>題名</th>
+            <th>気分</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="line : ${headLine}">
+            <td th:text="${line.editDate}"></td>
+            <td th:text="${line.title}"></td>
+            <td th:text="${line.emotion}"></td>
+        </tr>
+    </tbody>
+	</table>
+			<!--<tr>
+				<td>06/24</td>
+				<td>通院した</td>
+				<td>明るい 40%</td>
+			</tr>-->
+</body>
+</html>
