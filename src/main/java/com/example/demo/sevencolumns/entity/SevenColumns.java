@@ -2,8 +2,8 @@ package com.example.demo.sevencolumns.entity;
 
 public class SevenColumns {
 	
-	private int columnId;
-	private int userId;
+	private Integer columnId;
+	private Integer userId;
 	private String editDate;
 	private String title;
 	private String event;

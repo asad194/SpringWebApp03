@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.example.demo.sevencolumns.entity.HeadLine;
+import com.example.demo.sevencolumns.entity.SevenColumns;
 import com.example.demo.sevencolumns.repository.HeadLineDaoImpl;
+import com.example.demo.sevencolumns.repository.SevenColumnsDaoImpl;
 import com.example.demo.user.entity.User;
 import com.example.demo.user.repository.UserDaoImpl;
 
@@ -56,7 +58,13 @@ public class WebAppController {
 	
 	@GetMapping("/detail")
 	public String detail(Integer columnId) {
+		// Dao呼び出し→返ってきたものをdetailへ
+		DataSource dataSource = DataSourceBuilder.create().url("jdbc:h2:mem:test").driverClassName("org.h2.Driver").username("sa").password("").build();
+		SevenColumnsDaoImpl sevenColumnsDaoImpl = new SevenColumnsDaoImpl(dataSource);
+		SevenColumns detailColumns = sevenColumnsDaoImpl.getDetail(columnId);
 		
+		ModelAndView modelAndView = new ModelAndView("detail.html");
+		modelAndView.addObject("columns", detailColumns);
 		return "detail";
 	}
 	

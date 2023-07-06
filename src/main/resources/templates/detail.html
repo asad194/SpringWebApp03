@@ -2,6 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head></head>	
 <body>
-	<h1>詳細ページ</h1>
+	<h1>認知行動療法 7コラム法 記事詳細ページ</h1>
+	<table border="1">
+    <thead>
+        <tr>
+			<th>ID</th>
+            <th>日付</th>
+            <th>題名</th>
+            <th>出来事</th>
+            <th>気分</th>
+            <th>ネガティブな考え</th>
+            <th>認知の歪み</th>
+            <th>考えの根拠</th>
+            <th>考えへの反証</th>
+            <th>感情の変化</th>
+            
+            
+        </tr>
+    </thead>
+    <tbody>
+		<!-- 押下されたらcolumnIdをControllerへ渡す -->
+        <tr th:each="line : ${headLine}">
+			<td>
+				<a th:href="@{/detail(columnId=${line.columnId})}">	
+					<span th:text="${line.columnId}"></span>
+				</a>
+			</td>			
+	        <td th:text="${line.editDate}"></td>
+	        <td th:text="${line.title}"></td>
+	        <td th:text="${line.emotion}"></td>
+        </tr>
+    </tbody>
+	</table>
 </body>
 </html>
