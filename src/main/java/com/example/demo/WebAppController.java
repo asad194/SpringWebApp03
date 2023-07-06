@@ -54,4 +54,10 @@ public class WebAppController {
 		return "list";
 	}
 	
+	@GetMapping("/detail")
+	public String detail(Integer columnId) {
+		
+		return "detail";
+	}
+	
 }

@@ -7,17 +7,23 @@
 	<table border="1">
     <thead>
         <tr>
+			<th>ID</th>
             <th>日付</th>
             <th>題名</th>
             <th>気分</th>
         </tr>
     </thead>
     <tbody>
-		<!-- columnId要追加 -->
+		<!-- 押下されたらcolumnIdをControllerへ渡す -->
         <tr th:each="line : ${headLine}">
-            <td th:text="${line.editDate}"></td>
-            <td th:text="${line.title}"></td>
-            <td th:text="${line.emotion}"></td>
+			<td>
+				<a th:href="@{/detail(columnId=${line.columnId})}">	
+					<span th:text="${line.columnId}"></span>
+				</a>
+			</td>			
+	        <td th:text="${line.editDate}"></td>
+	        <td th:text="${line.title}"></td>
+	        <td th:text="${line.emotion}"></td>
         </tr>
     </tbody>
 	</table>

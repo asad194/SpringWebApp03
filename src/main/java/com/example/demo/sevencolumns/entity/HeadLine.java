@@ -1,6 +1,7 @@
 package com.example.demo.sevencolumns.entity;
 
 public class HeadLine {
+	Integer columnId;
 	String editDate;
 	String title;
 	String emotion;
@@ -22,6 +23,12 @@ public class HeadLine {
 	}
 	public void setEmotion(String emotion) {
 		this.emotion = emotion;
+	}
+	public int getColumnId() {
+		return columnId;
+	}
+	public void setColumnId(Integer columnId) {
+		this.columnId = columnId;
 	}
 
 }

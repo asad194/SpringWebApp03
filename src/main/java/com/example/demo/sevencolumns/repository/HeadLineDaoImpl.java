@@ -27,7 +27,7 @@ public class HeadLineDaoImpl implements HeadLineDao {
 	
 	@Override
 	public List<HeadLine> getHeadLine(int userId) {
-		String sql = "SELECT edit_date, title, emotion FROM seven_columns WHERE user_id = ?";
+		String sql = "SELECT column_id, edit_date, title, emotion FROM seven_columns WHERE user_id = ?";
 		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql, userId);
 		List<HeadLine> list = new ArrayList<HeadLine>();
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -41,6 +41,7 @@ public class HeadLineDaoImpl implements HeadLineDao {
 			headLine.setEditDate(edate);
 			headLine.setTitle((String)result.get("title"));
 			headLine.setEmotion((String)result.get("emotion"));
+			headLine.setColumnId((Integer)result.get("column_id"));
 			list.add(headLine);
 		}
 		
