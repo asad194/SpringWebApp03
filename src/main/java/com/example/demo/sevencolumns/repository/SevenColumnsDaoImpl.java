@@ -58,7 +58,7 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 	
 	@Override
 	public SevenColumns getDetail(Integer columnId) {
-		String sql = "SELECT * FROM seven_columns WHERE columns_id = ?";
+		String sql = "SELECT * FROM seven_columns WHERE column_id = ?";
 		List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, columnId);
 		List<SevenColumns> columnList = new ArrayList<SevenColumns>();
 		for(Map<String, Object> tmp : result) {
