@@ -1,10 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head></head>	
+<head>
+	<title>詳細画面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSSの読み込み -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">	
+</head>	
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-dark" href="#">日記録 | 認知行動療法サイト</a>
+	<p th:text="'ログインユーザー：' + ' ' + ${userName}"></p></nav>
 	<h1>認知行動療法 7コラム法 記事詳細ページ</h1>
-	  <table border="1">
-	    <thead>
+	  <table border="1"　class="table table-striped">
+	    <thead　class="thead-light">
         <tr>
 			<th>見出</th>
             <th>内容</th>
