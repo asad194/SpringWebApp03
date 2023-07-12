@@ -24,7 +24,7 @@
 		<!-- 押下されたらcolumnIdをControllerへ渡す -->
         <tr th:each="line : ${headLine}">
 			<td>
-				<a th:href="@{/detail(columnId=${line.columnId})}">	
+				<a th:href="@{/detail(columnId=${line.columnId}, userName=${user.userName})}">	
 					<span th:text="${line.columnId}"></span>
 				</a>
 			</td>			

@@ -65,6 +65,7 @@ public class WebAppController {
 		
 		ModelAndView modelAndView = new ModelAndView("detail.html");
 		modelAndView.addObject("columns", detailColumns);
+		System.out.println(userName);
 		modelAndView.addObject("userName", userName);		
 		return modelAndView;
 	}
