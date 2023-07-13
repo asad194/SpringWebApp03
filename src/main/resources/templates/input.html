@@ -13,34 +13,24 @@
 	<h1>認知行動療法 7コラム法 新規作成</h1>
 	<!-- 入力内容はPOSTでcontrollerへ -->
 	<form method="post" th:action="@{/input}">
-		<table border="1"　class="table table-striped">
-			<thead　class="thead-light">
-        		<tr>
-					<th>見出</th>
-            		<th>内容</th>
-        		</tr>
-    		</thead>
-    		<tbody>
-				<!--
-				<tr>
-					<td>ID</td>
-					<td th:text="${columns.columnId}"></td>
-        		</tr>
-        		-->
-        		<tr>
-					<td>日付</td>
-					<td contenteditable="true"></td>
-					<!--<td th:text="${columns.editDate}"></td>-->
-        		</tr>
+		<!--
+		<tr>
+			<td>ID</td>
+			<td th:text="${columns.columnId}"></td>
+		</tr>
+		-->
+		<label for="editDate">日付</label>
+		<input type="date" id="editDate" name="editDate" th:field="${column.editDate}" /><br />
+		
+		<label for="title">題名</label>
+		<input type="text" id="title" name="title" th:field="${column.title}" /><br />
+
+		<label for="event">出来事</label>
+		<input type="text" id="event" name="event" th:field="${column.event}" /><br />
+
+        
         <!--
-        <tr>
-			<td>題名</td>
-			<td th:text="${columns.title}"></td>
-        </tr>
-        <tr>
-			<td>出来事</td>
-			<td th:text="${columns.event}"></td>
-        </tr>
+
         <tr>
 			<td>気分</td>
 			<td th:text="${columns.emotion}"></td>

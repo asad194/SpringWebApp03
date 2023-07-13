@@ -74,6 +74,8 @@ public class WebAppController {
 	public ModelAndView input(String userName) {
 		ModelAndView modelAndView = new ModelAndView("input.html");
 		modelAndView.addObject("userName", userName);
+		SevenColumns column = new SevenColumns();
+		modelAndView.addObject("column", column);
 		return modelAndView;
 	}
 	
