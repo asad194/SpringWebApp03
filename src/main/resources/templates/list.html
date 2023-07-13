@@ -11,6 +11,9 @@
     <a class="navbar-brand text-dark" href="#">日記録 | 認知行動療法サイト</a>
 	<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p></nav>
 	<h1>日記録リスト</h1>
+	<form method="get" th:action="@{/input(userName=${user.userName})}">
+		<button type="submit" class="btn btn-success">新規作成</button>
+	</form>
 	<table border="1" class="table table-striped">
     <thead class="thead-light">
         <tr>

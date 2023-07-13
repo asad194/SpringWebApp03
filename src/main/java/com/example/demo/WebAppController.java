@@ -70,4 +70,11 @@ public class WebAppController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/input")
+	public ModelAndView input(String userName) {
+		ModelAndView modelAndView = new ModelAndView("input.html");
+		modelAndView.addObject("userName", userName);
+		return modelAndView;
+	}
+	
 }

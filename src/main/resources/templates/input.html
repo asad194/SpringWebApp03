@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>詳細画面</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSSの読み込み -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">	
+</head>	
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-dark" href="#">日記録 | 認知行動療法サイト</a>
+	<p th:text="'ログインユーザー：' + ' ' + ${userName}"></p></nav>
+	<h1>認知行動療法 7コラム法 新規作成</h1>
+	<!-- 入力内容はPOSTでcontrollerへ -->
+	<form method="post" th:action="@{/input}">
+		<table border="1"　class="table table-striped">
+			<thead　class="thead-light">
+        		<tr>
+					<th>見出</th>
+            		<th>内容</th>
+        		</tr>
+    		</thead>
+    		<tbody>
+				<!--
+				<tr>
+					<td>ID</td>
+					<td th:text="${columns.columnId}"></td>
+        		</tr>
+        		-->
+        		<tr>
+					<td>日付</td>
+					<td contenteditable="true"></td>
+					<!--<td th:text="${columns.editDate}"></td>-->
+        		</tr>
+        <!--
+        <tr>
+			<td>題名</td>
+			<td th:text="${columns.title}"></td>
+        </tr>
+        <tr>
+			<td>出来事</td>
+			<td th:text="${columns.event}"></td>
+        </tr>
+        <tr>
+			<td>気分</td>
+			<td th:text="${columns.emotion}"></td>
+        </tr>
+        <tr>
+			<td>ネガティブな考え</td>
+			<td th:text="${columns.negative}"></td>
+        </tr>
+        <tr>
+			<td>認知の歪み</td>
+			<td th:text="${columns.distortion}"></td>
+        </tr>
+        <tr>
+			<td>考えの根拠</td>
+			<td th:text="${columns.reason}"></td>
+        </tr>
+        <tr>
+			<td>考えへの反証</td>
+			<td th:text="${columns.disproof}"></td>
+        </tr>
+        <tr>
+        	<td>別の考え</td>
+        	<td th:text="${columns.another}"></td>
+        </tr>
+        <tr>
+			<td>感情の変化</td>
+			<td th:text="${columns.changeEmo}"></td>
+        </tr>
+    </tbody>
+	</table>
+	-->
+	</form>
+</body>
+</html>
