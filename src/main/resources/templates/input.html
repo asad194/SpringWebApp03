@@ -28,40 +28,27 @@
 		<label for="event">出来事</label>
 		<input type="text" id="event" name="event" th:field="${column.event}" /><br />
 
-        
-        <!--
+		<label for="emotion">気分</label>
+		<input type="text" id="emotion" name="emotion" th:field="${column.emotion}" /><br />
 
-        <tr>
-			<td>気分</td>
-			<td th:text="${columns.emotion}"></td>
-        </tr>
-        <tr>
-			<td>ネガティブな考え</td>
-			<td th:text="${columns.negative}"></td>
-        </tr>
-        <tr>
-			<td>認知の歪み</td>
-			<td th:text="${columns.distortion}"></td>
-        </tr>
-        <tr>
-			<td>考えの根拠</td>
-			<td th:text="${columns.reason}"></td>
-        </tr>
-        <tr>
-			<td>考えへの反証</td>
-			<td th:text="${columns.disproof}"></td>
-        </tr>
-        <tr>
-        	<td>別の考え</td>
-        	<td th:text="${columns.another}"></td>
-        </tr>
-        <tr>
-			<td>感情の変化</td>
-			<td th:text="${columns.changeEmo}"></td>
-        </tr>
-    </tbody>
-	</table>
-	-->
+		<label for="negative">ネガティブな考え</label>
+		<input type="text" id="negative" name="negative" th:field="${column.negative}" /><br />
+			
+		<label for="distortion">認知の歪み</label>
+		<input type="text" id="distortion" name="distortion" th:field="${column.distortion}" /><br />
+		
+		<label for="reason">考えの根拠</label>
+		<input type="text" id="reason" name="reason" th:field="${column.reason}" /><br />
+		
+		<label for="disproof">考えへの反証</label>
+		<input type="text" id="disproof" name="disproof" th:field="${column.disproof}" /><br />
+		
+		<label for="another">別の考え</label>
+		<input type="text" id="another" name="another" th:field="${column.another}" /><br />
+		
+		<label for="changeEmo">感情の変化</label>
+		<input type="text" id="changeEmo" name="changeEmo" th:field="${column.changeEmo}" /><br />        
+
 	</form>
 </body>
 </html>
