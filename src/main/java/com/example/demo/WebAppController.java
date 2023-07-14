@@ -57,7 +57,7 @@ public class WebAppController {
 	}
 	
 	@GetMapping("/detail")
-	public ModelAndView detail(Integer columnId, String userName) {
+	public ModelAndView detail(Integer columnId, User loginUser) {
 		// Dao呼び出し→返ってきたものをdetailへ
 		DataSource dataSource = DataSourceBuilder.create().url("jdbc:h2:mem:test").driverClassName("org.h2.Driver").username("sa").password("").build();
 		SevenColumnsDaoImpl sevenColumnsDaoImpl = new SevenColumnsDaoImpl(dataSource);
@@ -65,15 +65,14 @@ public class WebAppController {
 		
 		ModelAndView modelAndView = new ModelAndView("detail.html");
 		modelAndView.addObject("columns", detailColumns);
-		System.out.println(userName);
-		modelAndView.addObject("userName", userName);		
+		modelAndView.addObject("user", loginUser);
 		return modelAndView;
 	}
 	
 	@GetMapping("/input")
-	public ModelAndView input(String userName) {
+	public ModelAndView input(User loginUser) {
 		ModelAndView modelAndView = new ModelAndView("input.html");
-		modelAndView.addObject("userName", userName);
+		modelAndView.addObject("user", loginUser);
 		SevenColumns column = new SevenColumns();
 		modelAndView.addObject("column", column);
 		return modelAndView;

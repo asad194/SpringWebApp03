@@ -11,7 +11,7 @@
     <a class="navbar-brand text-dark" href="#">日記録 | 認知行動療法サイト</a>
 	<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p></nav>
 	<h1>日記録リスト</h1>
-	<form method="get" th:action="@{/input(userName=${user.userName})}">
+	<form method="get" th:action="@{/input(user=${user})}">
 		<button type="submit" class="btn btn-success">新規作成</button>
 	</form>
 	<table border="1" class="table table-striped">
@@ -27,7 +27,7 @@
 		<!-- 押下されたらcolumnIdをControllerへ渡す -->
         <tr th:each="line : ${headLine}">
 			<td>
-				<a th:href="@{/detail(columnId=${line.columnId}, userName=${user.userName})}">	
+				<a th:href="@{/detail(columnId=${line.columnId}, user=${user})}">
 					<span th:text="${line.columnId}"></span>
 				</a>
 			</td>			
