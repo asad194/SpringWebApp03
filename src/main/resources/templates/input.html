@@ -10,46 +10,46 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand text-dark" href="#">日記録 | 認知行動療法サイト</a>
-    <!-- ユーザーID渡したいので、userNameだけでなくuserオブジェクト貰うよう書き換える -->
-	<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p></nav>
+	<!--<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p></nav>-->
 	<h1>認知行動療法 7コラム法 新規作成</h1>
 	<!-- 入力内容はPOSTでcontrollerへ -->
-	<form method="post" th:action="@{/input}">
+	<form method="post" th:action="@{/input(userId=${user.userId})}">
 		<!--
 		<tr>
 			<td>ID</td>
 			<td th:text="${columns.columnId}"></td>
 		</tr>
 		-->
+		
 		<label for="editDate">日付</label>
-		<input type="date" id="editDate" name="editDate" th:field="${column.editDate}" /><br />
+		<input type="date" id="editDate" name="editDate" /><br />
 		
 		<label for="title">題名</label>
-		<input type="text" id="title" name="title" th:field="${column.title}" /><br />
+		<input type="text" id="title" name="title"  /><br />
 
 		<label for="event">出来事</label>
-		<input type="text" id="event" name="event" th:field="${column.event}" /><br />
+		<input type="text" id="event" name="event"  /><br />
 
 		<label for="emotion">気分</label>
-		<input type="text" id="emotion" name="emotion" th:field="${column.emotion}" /><br />
+		<input type="text" id="emotion" name="emotion" /><br />
 
 		<label for="negative">ネガティブな考え</label>
-		<input type="text" id="negative" name="negative" th:field="${column.negative}" /><br />
+		<input type="text" id="negative" name="negative"  /><br />
 			
 		<label for="distortion">認知の歪み</label>
-		<input type="text" id="distortion" name="distortion" th:field="${column.distortion}" /><br />
+		<input type="text" id="distortion" name="distortion" /><br />
 		
 		<label for="reason">考えの根拠</label>
-		<input type="text" id="reason" name="reason" th:field="${column.reason}" /><br />
+		<input type="text" id="reason" name="reason"  /><br />
 		
 		<label for="disproof">考えへの反証</label>
-		<input type="text" id="disproof" name="disproof" th:field="${column.disproof}" /><br />
+		<input type="text" id="disproof" name="disproof"  /><br />
 		
 		<label for="another">別の考え</label>
-		<input type="text" id="another" name="another" th:field="${column.another}" /><br />
+		<input type="text" id="another" name="another" /><br />
 		
 		<label for="changeEmo">感情の変化</label>
-		<input type="text" id="changeEmo" name="changeEmo" th:field="${column.changeEmo}" /><br />        
+		<input type="text" id="changeEmo" name="changeEmo"  /><br />        
 		
 		<button type="submit" class="btn btn-success">新規作成</button>
 
