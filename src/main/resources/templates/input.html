@@ -18,9 +18,11 @@
 		
 		<label for="editDate">日付</label>
 		<input type="date" id="editDate" name="editDate" th:field="*{editDate}" /><br />
+		<p th:if="${#fields.hasErrors('editDate')}" th:errors="*{editDate}">日付を選んでください</p>
 		
 		<label for="title">題名</label>
 		<input type="text" id="title" name="title" th:field="*{title}" /><br />
+		<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">入力必須です</p>
 
 		<label for="event">出来事</label>
 		<input type="text" id="event" name="event" th:field="*{event}" /><br />

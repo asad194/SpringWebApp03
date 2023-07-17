@@ -6,6 +6,8 @@ import javax.sql.DataSource;
 
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -76,6 +78,14 @@ public class WebAppController {
 		SevenColumns column = new SevenColumns();
 		modelAndView.addObject("column", column);
 		return modelAndView;
+	}
+	
+	@PostMapping("/input")
+	public String checkColumnForm(@Validated ColumnForm columnForm, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "input";
+		}
+		return "input";
 	}
 	
 	
