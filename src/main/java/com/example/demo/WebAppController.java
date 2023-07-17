@@ -70,7 +70,7 @@ public class WebAppController {
 	}
 	
 	@GetMapping("/input")
-	public ModelAndView input(User loginUser) {
+	public ModelAndView input(User loginUser, ColumnForm columnForm) {
 		ModelAndView modelAndView = new ModelAndView("input.html");
 		modelAndView.addObject("user", loginUser);
 		SevenColumns column = new SevenColumns();
