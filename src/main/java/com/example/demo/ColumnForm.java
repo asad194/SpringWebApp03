@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -13,7 +13,7 @@ public class ColumnForm {
 	private Integer userId;
 	@NotNull
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
-	private Date editDate;
+	private LocalDate editDate;
 	@NotNull
 	private String title;
 	private String event;
