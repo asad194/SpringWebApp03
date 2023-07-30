@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -22,6 +23,13 @@ import com.example.demo.user.repository.UserDaoImpl;
 
 @Controller
 public class WebAppController {
+	
+	private final SevenColumnsService service;
+	
+	@Autowired
+	public WebAppController(SevenColumnsService service) {
+		this.service = service;
+	}
 
 	@GetMapping("/login")
 	public String login() {
@@ -85,7 +93,11 @@ public class WebAppController {
 		if(bindingResult.hasErrors()) {
 			return "input";
 		}
-		return "input";
+		
+		SevenColumns column = columnForm.changeToEntity();
+		service.createColumn(column);
+		
+		return "list";
 	}
 	
 	

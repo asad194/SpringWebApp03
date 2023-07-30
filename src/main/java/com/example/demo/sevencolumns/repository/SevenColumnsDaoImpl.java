@@ -1,8 +1,6 @@
 package com.example.demo.sevencolumns.repository;
 
-import java.sql.Date;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -41,7 +39,8 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 				SevenColumns sevenColumns = new SevenColumns();
 				sevenColumns.setColumnId((int)result.get("columnId"));
 				sevenColumns.setUserId((int)result.get("userId"));
-				sevenColumns.setEditDate((String)result.get("editDate"));
+				// 次ここから
+				sevenColumns.setEditDate((LocalDate)result.get("editDate"));
 				sevenColumns.setTitle((String)result.get("title"));
 				sevenColumns.setEvent((String)result.get("event"));
 				sevenColumns.setEmotion((String)result.get("emotion"));
@@ -65,13 +64,14 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 			SevenColumns hitColumns = new SevenColumns();
 			hitColumns.setColumnId((Integer)tmp.get("column_id"));
 			hitColumns.setUserId((Integer)tmp.get("user_id"));
-			
+			/*
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 			Date date = (Date)tmp.get("edit_date");
 			LocalDate lDate = date.toLocalDate();
 			String edate = lDate.format(formatter);
 			hitColumns.setEditDate(edate);
-			
+			*/
+			hitColumns.setEditDate((LocalDate)tmp.get("edit_date"));
 			hitColumns.setTitle((String)tmp.get("title"));
 			hitColumns.setEvent((String)tmp.get("event"));
 			hitColumns.setEmotion((String)tmp.get("emotion"));
