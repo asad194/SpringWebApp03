@@ -85,6 +85,11 @@ public class WebAppController {
 		if(bindingResult.hasErrors()) {
 			return "input";
 		}
+		
+		
+		
+		// SevenColumnsDao呼び出し
+		
 		return "list";
 	}
 	

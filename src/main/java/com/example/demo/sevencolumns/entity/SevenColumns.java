@@ -1,10 +1,12 @@
 package com.example.demo.sevencolumns.entity;
 
+import java.time.LocalDate;
+
 public class SevenColumns {
 	
 	private Integer columnId;
 	private Integer userId;
-	private String editDate;
+	private LocalDate editDate;
 	private String title;
 	private String event;
 	private String emotion;
@@ -27,11 +29,15 @@ public class SevenColumns {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getEditDate() {
+	public LocalDate getEditDate() {
 		return editDate;
 	}
-	public void setEditDate(String editDate) {
+	public void setEditDate(LocalDate editDate) {
 		this.editDate = editDate;
+	}
+	public LocalDate changeDateToLocalDate(String htmlDate) {
+		LocalDate date = LocalDate.parse(htmlDate);
+		return date;
 	}
 	public String getTitle() {
 		return title;

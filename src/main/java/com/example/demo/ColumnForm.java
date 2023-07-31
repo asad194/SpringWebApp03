@@ -4,6 +4,8 @@ import java.time.LocalDate;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.example.demo.sevencolumns.entity.SevenColumns;
+
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
@@ -24,4 +26,12 @@ public class ColumnForm {
 	private String disproof;
 	private String another;
 	private String changeEmo;
+		
+	public SevenColumns changeFormToColumns() {
+		SevenColumns column = new SevenColumns();
+		
+		
+		
+		return column;
+	}
 }

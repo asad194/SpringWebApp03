@@ -28,7 +28,19 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 	
 	@Override
 	public void insertSevenColumns(SevenColumns sevenColumns) {
-		jdbcTemplate.update("INSERT INTO seven_columns(edit_date, title, event, emotion, negative, distortion, reason, disproof, another, change_emo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", sevenColumns.getEditDate(), sevenColumns.getTitle(), sevenColumns.getEvent(), sevenColumns.getEmotion(), sevenColumns.getNegative(), sevenColumns.getDistortion(), sevenColumns.getReason(), sevenColumns.getDisproof(), sevenColumns.getAnother(), sevenColumns.getChangeEmo());
+		String sql = "INSERT INTO seven_columns(user_id, edit_date, title, event, emotion, negative, distortion, reason, disproof, another, change_emo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		Integer userId = sevenColumns.getUserId();
+		LocalDate editDate = sevenColumns.getEditDate();	
+		String title = sevenColumns.getTitle();
+		String event = sevenColumns.getEvent();
+		String emotion = sevenColumns.getEmotion();
+		String negative = sevenColumns.getNegative();
+		String distortion = sevenColumns.getDistortion();
+		String reason = sevenColumns.getReason();
+		String disproof = sevenColumns.getDisproof();
+		String another = sevenColumns.getAnother();
+		String changeEmo = sevenColumns.getChangeEmo();
+		jdbcTemplate.update(sql, userId, editDate, title, event, emotion, negative, distortion, reason, disproof, another, changeEmo);
 	}
 	
 	@Override
@@ -41,7 +53,7 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 				SevenColumns sevenColumns = new SevenColumns();
 				sevenColumns.setColumnId((int)result.get("columnId"));
 				sevenColumns.setUserId((int)result.get("userId"));
-				sevenColumns.setEditDate((String)result.get("editDate"));
+				sevenColumns.setEditDate((LocalDate)result.get("editDate"));
 				sevenColumns.setTitle((String)result.get("title"));
 				sevenColumns.setEvent((String)result.get("event"));
 				sevenColumns.setEmotion((String)result.get("emotion"));
@@ -70,7 +82,7 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 			Date date = (Date)tmp.get("edit_date");
 			LocalDate lDate = date.toLocalDate();
 			String edate = lDate.format(formatter);
-			hitColumns.setEditDate(edate);
+			hitColumns.setEditDate(lDate);
 			
 			hitColumns.setTitle((String)tmp.get("title"));
 			hitColumns.setEvent((String)tmp.get("event"));
@@ -87,5 +99,7 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 		return sc;
 	}
 
+	
+	
 
 }
