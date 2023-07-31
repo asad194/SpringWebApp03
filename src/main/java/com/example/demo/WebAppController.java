@@ -85,7 +85,7 @@ public class WebAppController {
 		if(bindingResult.hasErrors()) {
 			return "input";
 		}
-		return "input";
+		return "list";
 	}
 	
 	
