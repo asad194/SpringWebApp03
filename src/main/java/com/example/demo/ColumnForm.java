@@ -11,14 +11,14 @@ import lombok.Data;
 
 @Data
 public class ColumnForm {
-	@NotNull
 	private Integer userId;
-	@NotNull
+	@NotNull(message = "日付は必須です")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	private LocalDate editDate;
-	@NotNull
+	@NotNull(message = "題名は必須です")
 	private String title;
 	private String event;
+	@NotNull(message = "気分は必須です")
 	private String emotion;
 	private String negative;
 	private String distortion;

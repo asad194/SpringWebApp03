@@ -4,6 +4,6 @@ import com.example.demo.user.entity.User;
 
 public interface UserDao {
 
-	public User searchUser(int userId, String userPass);
+	public User searchUser(Integer userId, String userPass);
 	
 }

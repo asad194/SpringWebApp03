@@ -7,6 +7,7 @@ import javax.sql.DataSource;
 import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,19 +23,21 @@ import com.example.demo.user.repository.UserDaoImpl;
 
 @Controller
 public class WebAppController {
-
+	
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
 		
 	@PostMapping("/login")
-	public ModelAndView login(@RequestParam("user_id") int userId, @RequestParam("password") String userPass) {
+	public ModelAndView login(@RequestParam("user_id") Integer userId, @RequestParam("password") String userPass) {
 		//JdbcTemplate jdbcTemplate = new JdbcTemplate();
 		DataSource dataSource = DataSourceBuilder.create().url("jdbc:h2:mem:test").driverClassName("org.h2.Driver").username("sa").password("").build();
 		UserDaoImpl userDaoImpl = new UserDaoImpl(dataSource);
 		User loginUser = userDaoImpl.searchUser(userId, userPass);
 		if( loginUser.getUserName() != null ) {
+			loginUser.setUserId(userId);
+			loginUser.setUserPass(userPass);
 			ModelAndView modelAndView = new ModelAndView("list.html");
 			modelAndView.addObject("user", loginUser);
 			/*
@@ -72,23 +75,37 @@ public class WebAppController {
 	}
 	
 	@GetMapping("/input")
-	public ModelAndView input(User loginUser, ColumnForm columnForm) {
+	public ModelAndView input(@RequestParam("userId") Integer userId, ColumnForm columnForm) {
 		ModelAndView modelAndView = new ModelAndView("input.html");
-		modelAndView.addObject("user", loginUser);
+		modelAndView.addObject("userId", userId);
 		SevenColumns column = new SevenColumns();
 		modelAndView.addObject("column", column);
 		return modelAndView;
 	}
 	
 	@PostMapping("/input")
-	public String checkColumnForm(@Validated ColumnForm columnForm, BindingResult bindingResult) {
+	public String checkColumnForm(@RequestParam("userId") Integer userId, @Validated ColumnForm columnForm, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
+			for(ObjectError error : bindingResult.getAllErrors()) {
+				System.out.println("Validation error : " + error.getDefaultMessage());
+			}
+			
+			
 			return "input";
 		}
 		
+		if(!bindingResult.hasErrors()) {
+			System.out.println("FOOOOOOOOOO!!!!!");
+			return "login";
+		}
 		
+		// Forms > Entity
+		SevenColumns column = columnForm.changeFormToColumns();
 		
 		// SevenColumnsDao呼び出し
+		DataSource dataSource = DataSourceBuilder.create().url("jdbc:h2:mem:test").driverClassName("org.h2.Driver").username("sa").password("").build();
+		SevenColumnsDaoImpl sevenColumnsDaoImpl = new SevenColumnsDaoImpl(dataSource);
+		sevenColumnsDaoImpl.insertSevenColumns(column);
 		
 		return "list";
 	}

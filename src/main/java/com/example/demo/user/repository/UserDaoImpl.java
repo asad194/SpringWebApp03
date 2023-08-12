@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User searchUser(int userId, String userPass) {
+	public User searchUser(Integer userId, String userPass) {
 		//String sql = "SELECT user_name FROM `user` WHERE user_id = ? AND user_pass = ?";
 		String sql = "SELECT user_name FROM `user` WHERE user_id = ? AND user_pass = ?";
 		/*

@@ -13,8 +13,9 @@
 	<!--<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p></nav>-->
 	<h1>認知行動療法 7コラム法 新規作成</h1>
 	<!-- 入力内容はPOSTでcontrollerへ -->
+	<!-- th:actionのところで、URLにuserというクエリパラメタ生成し、その中にuserオブジェクトを入れている？ -->
 	<form method="post" th:action="@{/input}" th:object="${columnForm}">
-		<input type="hidden" id="userId" name="userId" th:field="*{userId}" />
+		<input type="hidden" id="userId" name="userId" th:value="${userId}" />
 		
 		<label for="editDate">日付</label>
 		<input type="date" id="editDate" name="editDate" th:field="*{editDate}" /><br />
