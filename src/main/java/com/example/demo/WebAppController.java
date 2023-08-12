@@ -89,17 +89,11 @@ public class WebAppController {
 			for(ObjectError error : bindingResult.getAllErrors()) {
 				System.out.println("Validation error : " + error.getDefaultMessage());
 			}
-			
-			
 			return "input";
 		}
 		
-		if(!bindingResult.hasErrors()) {
-			System.out.println("FOOOOOOOOOO!!!!!");
-			return "login";
-		}
-		
 		// Forms > Entity
+		columnForm.setUserId(userId);
 		SevenColumns column = columnForm.changeFormToColumns();
 		
 		// SevenColumnsDao呼び出し

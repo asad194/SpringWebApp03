@@ -28,7 +28,7 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 	
 	@Override
 	public void insertSevenColumns(SevenColumns sevenColumns) {
-		String sql = "INSERT INTO seven_columns(user_id, edit_date, title, event, emotion, negative, distortion, reason, disproof, another, change_emo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO seven_columns(user_id, edit_date, title, event, emotion, negative, distortion, reason, disproof, another, change_emo) VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Integer userId = sevenColumns.getUserId();
 		LocalDate editDate = sevenColumns.getEditDate();	
 		String title = sevenColumns.getTitle();
