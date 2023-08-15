@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>編集画面</title>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSSの読み込み -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">	
+</head>	
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand text-dark" href="#">日記録 | 認知行動療法サイト</a>
+	<!--<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p></nav>-->
+	<h1>認知行動療法 7コラム法 編集</h1>
+	<form method="post" th:action="@{/update}" th:object="${columnForm}">
+		<input type="hidden" id="columnId" name="columnId" th:value="${param.columnId}" />
+		<input type="hidden" id="userId" name="userId" th:value="${userId}" />
+		
+		<label for="editDate">日付</label>
+		<input type="date" id="editDate" name="editDate" th:field="*{editDate}" /><br />
+		<p th:if="${#fields.hasErrors('editDate')}" th:errors="*{editDate}">日付を選んでください</p>
+		
+		<label for="title">題名</label>
+		<input type="text" id="title" name="title" th:field="*{title}" /><br />
+		<p th:if="${#fields.hasErrors('title')}" th:errors="*{title}">入力必須です</p>
+
+		<label for="event">出来事</label>
+		<input type="text" id="event" name="event" th:field="*{event}" /><br />
+
+		<label for="emotion">気分</label>
+		<input type="text" id="emotion" name="emotion" th:field="*{emotion}" /><br />
+
+		<label for="negative">ネガティブな考え</label>
+		<input type="text" id="negative" name="negative" th:field="*{negative}" /><br />
+			
+		<label for="distortion">認知の歪み</label>
+		<input type="text" id="distortion" name="distortion" th:field="*{distortion}" /><br />
+		
+		<label for="reason">考えの根拠</label>
+		<input type="text" id="reason" name="reason" th:field="*{reason}"  /><br />
+		
+		<label for="disproof">考えへの反証</label>
+		<input type="text" id="disproof" name="disproof" th:field="*{disproof}"  /><br />
+		
+		<label for="another">別の考え</label>
+		<input type="text" id="another" name="another" th:field="*{another}"  /><br />
+		
+		<label for="changeEmo">感情の変化</label>
+		<input type="text" id="changeEmo" name="changeEmo" th:field="*{changeEmo}"  /><br />        
+		
+		<button type="submit" class="btn btn-success">更新</button>
+
+	</form>
+</body>
+</html>

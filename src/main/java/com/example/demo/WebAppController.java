@@ -10,6 +10,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
@@ -84,12 +86,17 @@ public class WebAppController {
 	}
 	
 	@PostMapping("/input")
-	public String checkColumnForm(@RequestParam("userId") Integer userId, @Validated ColumnForm columnForm, BindingResult bindingResult) {
+	public ModelAndView checkColumnForm(@RequestParam("userId") Integer userId, @Validated ColumnForm columnForm, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {
 			for(ObjectError error : bindingResult.getAllErrors()) {
 				System.out.println("Validation error : " + error.getDefaultMessage());
 			}
-			return "input";
+			User user = new User();
+			user.setUserId(userId);
+			ModelAndView modelAndView = new ModelAndView("input.html");
+			modelAndView.addObject("userId", userId);
+			
+			return modelAndView;
 		}
 		
 		// Forms > Entity
@@ -101,8 +108,25 @@ public class WebAppController {
 		SevenColumnsDaoImpl sevenColumnsDaoImpl = new SevenColumnsDaoImpl(dataSource);
 		sevenColumnsDaoImpl.insertSevenColumns(column);
 		
-		return "list";
+		// list.htmlでuserId関連のエラー回避するための処理
+		User user = new User();
+		user.setUserId(userId);
+		ModelAndView modelAndView = new ModelAndView("list.html");
+		modelAndView.addObject("user", user);
+		HeadLineDaoImpl headLineDaoImpl = new HeadLineDaoImpl(dataSource);
+		List<HeadLine> headLines = headLineDaoImpl.getHeadLine(userId);
+		modelAndView.addObject("headLine", headLines);
+		
+		return modelAndView;
 	}
+	
+	@GetMapping("/update/{columnId}")
+	public String update(@RequestParam("userId") Integer userId, @ModelAttribute ColumnForm columnForm, @PathVariable Integer columnId) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		return "update";
+	}
+	
 	
 	
 }

@@ -12,6 +12,7 @@ import lombok.Data;
 
 @Data
 public class ColumnForm {
+	private Integer columnId;
 	private Integer userId;
 	@NotNull(message = "日付は必須です")
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
