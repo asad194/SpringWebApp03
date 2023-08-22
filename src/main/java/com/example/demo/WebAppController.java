@@ -121,11 +121,39 @@ public class WebAppController {
 	}
 	
 	@GetMapping("/update/{columnId}")
-	public String update(@RequestParam("userId") Integer userId, @ModelAttribute ColumnForm columnForm, @PathVariable Integer columnId) {
-		ModelAndView modelAndView = new ModelAndView();
+	public ModelAndView update(@ModelAttribute ColumnForm columnForm, @PathVariable Integer columnId) {
 		
+		DataSource dataSource = DataSourceBuilder.create().url("jdbc:h2:mem:test").driverClassName("org.h2.Driver").username("sa").password("").build();
+		SevenColumnsDaoImpl sevenColumnsDaoImpl = new SevenColumnsDaoImpl(dataSource);
+		SevenColumns column = sevenColumnsDaoImpl.getDetail(columnId);
+		columnForm = column.changeColumnToForm(columnForm);
+		
+		ModelAndView modelAndView = new ModelAndView("update");
+		modelAndView.addObject("columnForm", columnForm);
+		modelAndView.addObject("columnId", columnId);
+		modelAndView.addObject("userId", columnForm.getUserId());
+		modelAndView.addObject("editDate", columnForm.getEditDate());
+		modelAndView.addObject("title", columnForm.getTitle());
+		modelAndView.addObject("event", columnForm.getEvent());
+		modelAndView.addObject("emotion", columnForm.getEmotion());
+		modelAndView.addObject("negative", columnForm.getNegative());
+		modelAndView.addObject("distortion", columnForm.getDistortion());
+		modelAndView.addObject("reason", columnForm.getReason());
+		modelAndView.addObject("disproof", columnForm.getDisproof());
+		modelAndView.addObject("another", columnForm.getAnother());
+		modelAndView.addObject("changeEmo", columnForm.getChangeEmo());
+		
+		
+		
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("/update")
+	public String update() {
 		return "update";
 	}
+	
 	
 	
 	

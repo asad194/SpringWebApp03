@@ -2,6 +2,10 @@ package com.example.demo.sevencolumns.entity;
 
 import java.time.LocalDate;
 
+import com.example.demo.ColumnForm;
+
+import io.micrometer.common.util.StringUtils;
+
 public class SevenColumns {
 	
 	private Integer columnId;
@@ -92,6 +96,36 @@ public class SevenColumns {
 	}
 	public void setChangeEmo(String changeEmo) {
 		this.changeEmo = changeEmo;
+	}
+	
+	public ColumnForm changeColumnToForm(ColumnForm form) {
+		
+		form.setUserId(this.userId);
+		form.setEditDate(this.editDate);
+		form.setTitle(this.title);
+		if( StringUtils.isNotEmpty(this.event) ) {
+			form.setEvent(this.event);
+		}
+		form.setEmotion(this.emotion);
+		if( StringUtils.isNotEmpty(this.negative) ) {
+			form.setNegative(this.negative);
+		}
+		if( StringUtils.isNotEmpty(this.distortion) ) {
+			form.setDistortion(this.distortion);
+		}
+		if( StringUtils.isNotEmpty(this.reason) ) {
+			form.setReason(this.reason);
+		}
+		if( StringUtils.isNotEmpty(this.disproof) ) {
+			form.setDisproof(this.disproof);
+		}
+		if( StringUtils.isNotEmpty(this.another) ) {
+			form.setAnother(this.another);
+		}
+		if( StringUtils.isNotEmpty(this.changeEmo) ) {
+			form.setChangeEmo(this.changeEmo);
+		}
+		return form;
 	}
 
 	

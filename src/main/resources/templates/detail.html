@@ -65,8 +65,8 @@
         </tr>
     </tbody>
 	</table>
-	<form method="get" th:action="@{/update}">
-		<button type="submit" class="btn btn-success">更新</button>
+	<form method="get" th:action="@{/update/{columnId}(columnId=${columns.columnId})}">
+		<button type="submit" class="btn btn-success">編集</button>
 	</form>
 </body>
 </html>
