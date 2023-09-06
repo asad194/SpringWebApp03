@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.ColumnForm;
 import com.example.demo.sevencolumns.entity.SevenColumns;
 
 
@@ -97,6 +98,24 @@ public class SevenColumnsDaoImpl implements SevenColumnsDao {
 		}
 		SevenColumns sc = columnList.get(0);
 		return sc;
+	}
+	
+	@Override
+	public void update(ColumnForm columnForm, Integer columnId) {
+		String sql = "UPDATE seven_columns SET edit_date = ?, title = ?, event = ?, emotion = ?, negative = ?, distortion = ?, reason = ?, disproof = ?, another = ?, change_emo = ? WHERE column_id = ?";
+		
+		LocalDate editDate = columnForm.getEditDate();
+		String title = columnForm.getTitle();
+		String event = columnForm.getEvent();
+		String emotion = columnForm.getEmotion();
+		String negative = columnForm.getNegative();
+		String distortion = columnForm.getDistortion();
+		String reason = columnForm.getReason();
+		String disproof = columnForm.getDisproof();
+		String another = columnForm.getAnother();
+		String changeEmo = columnForm.getChangeEmo();
+		
+		jdbcTemplate.update(sql, editDate, title, event, emotion, negative, distortion, reason, disproof, another, changeEmo, columnId);
 	}
 
 	

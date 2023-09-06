@@ -121,7 +121,7 @@ public class WebAppController {
 	}
 	
 	@GetMapping("/update/{columnId}")
-	public ModelAndView update(@ModelAttribute ColumnForm columnForm, @PathVariable Integer columnId) {
+	public ModelAndView preUpdate(@ModelAttribute ColumnForm columnForm, @PathVariable Integer columnId) {
 		
 		DataSource dataSource = DataSourceBuilder.create().url("jdbc:h2:mem:test").driverClassName("org.h2.Driver").username("sa").password("").build();
 		SevenColumnsDaoImpl sevenColumnsDaoImpl = new SevenColumnsDaoImpl(dataSource);
@@ -142,18 +142,33 @@ public class WebAppController {
 		modelAndView.addObject("disproof", columnForm.getDisproof());
 		modelAndView.addObject("another", columnForm.getAnother());
 		modelAndView.addObject("changeEmo", columnForm.getChangeEmo());
-		
-		
-		
-		
+
 		return modelAndView;
 	}
-	
+	/*
 	@GetMapping("/update")
-	public String update() {
+	public String toUpdate() {
 		return "update";
 	}
-	
+	*/
+	@PostMapping("/update/{columnId}")
+	public ModelAndView update(@ModelAttribute ColumnForm columnForm, @PathVariable Integer columnId) {
+		
+		System.out.println(columnId);
+		DataSource dataSource = DataSourceBuilder.create().url("jdbc:h2:mem:test").driverClassName("org.h2.Driver").username("sa").password("").build();
+		SevenColumnsDaoImpl sevenColumnsDaoImpl = new SevenColumnsDaoImpl(dataSource);
+		sevenColumnsDaoImpl.update(columnForm, columnId);
+		
+		UserDaoImpl userDaoImpl = new UserDaoImpl(dataSource);
+		User user = userDaoImpl.searchIdOnly(columnId);
+		ModelAndView modelAndView = new ModelAndView("list");
+		modelAndView.addObject("user", user);
+		String cid = columnId.toString();
+		modelAndView.addObject("columnId", cid);
+		
+		return modelAndView;
+		
+	}
 	
 	
 	

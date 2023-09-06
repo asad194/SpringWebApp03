@@ -58,6 +58,25 @@ public class UserDaoImpl implements UserDao {
 		return loginUser;
 	}
 	
+	@Override
+	public User searchIdOnly(Integer userId) {
+		User user = new User();
+		String sql = "SELECT * FROM `user` WHERE user_id = ?";
+		List<Map<String, Object>> result = jdbcTemplate.queryForList(sql, userId);
+		List<User> userList = new ArrayList<User>();
+		for(Map<String, Object> rr : result) {
+			User hitUser = new User();
+			hitUser.setUserId((Integer)rr.get("user_id"));
+			hitUser.setUserName((String)rr.get("user_name"));
+			hitUser.setUserPass((String)rr.get("user_pass"));
+			userList.add(hitUser);
+		}
+		if(!userList.isEmpty()) {
+			user = userList.get(0);
+		}
+		
+		return user;
+	}
 
 
 
