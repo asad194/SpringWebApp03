@@ -12,7 +12,7 @@
     <a class="navbar-brand text-dark" href="#">日記録 | 認知行動療法サイト</a>
 	<!--<p th:text="'ログインユーザー：' + ' ' + ${user.userName}"></p></nav>-->
 	<h1>認知行動療法 7コラム法 編集</h1>
-	<form method="post" th:action="@{/update/${columnId}}" th:object="${columnForm}">
+	<form method="post" th:action="@{/update/{columnId}(columnId=${columnId})}" th:object="${columnForm}">
 		<input type="hidden" id="columnId" name="columnId" th:value="${param.columnId}" />
 		<input type="hidden" id="userId" name="userId" th:value="${userId}" />
 		
